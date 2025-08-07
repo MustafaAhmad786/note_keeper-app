@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:marfah_tech/models/note.dart';
 import 'package:marfah_tech/providers/note_provider.dart';
@@ -20,10 +21,18 @@ class _HomeScreenState extends State<HomeScreen> {
     final notes = Provider.of<NoteProvider>(context).notes;
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: Text("Notes Keeper"),
-          backgroundColor: Colors.transparent,
+        extendBodyBehindAppBar: true,
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(50),
+          child: ClipRRect(
+            borderRadius: BorderRadius.vertical(bottom: Radius.circular(17)),
+            child: AppBar(
+              elevation: 30,
+              centerTitle: true,
+              title: Text("Notes Keeper"),
+              backgroundColor: Colors.transparent,
+            ),
+          ),
         ),
         floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add),
@@ -35,92 +44,42 @@ class _HomeScreenState extends State<HomeScreen> {
           },
         ),
         body: Container(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Expanded(
-                child:
-                    notes.isEmpty
-                        ? Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
+          child: Container(
+            color: Colors.white.withOpacity(0.2),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(
+                  child:
+                      notes.isEmpty
+                          ? Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
 
-                            children: [
-                              Text(
-                                "😪NO TASK     ",
-                                style: TextStyle(fontSize: 18),
-                              ),
-                              Text(
-                                "PLEASE ADD YOUR TASK 😉",
-                                style: TextStyle(fontSize: 18),
-                              ),
-                            ],
+                              children: [
+                                Text(
+                                  "😪NO TASK     ",
+                                  style: TextStyle(fontSize: 18),
+                                ),
+                                Text(
+                                  "PLEASE ADD YOUR TASK 😉",
+                                  style: TextStyle(fontSize: 18),
+                                ),
+                              ],
+                            ),
+                          )
+                          : ListView.builder(
+                            itemCount: notes.length,
+                            itemBuilder: (context, index) {
+                              return NoteCard(note: notes[index], index: index);
+                            },
                           ),
-                        )
-                        : ListView.builder(
-                          itemCount: notes.length,
-                          itemBuilder: (context, index) {
-                            return NoteCard(note: notes[index], index: index);
-                          },
-                        ),
-              ),
-            ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
     );
   }
 }
-
-/* 
-
-Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        height: 100,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          border: Border.all(),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 12,
-                            vertical: 10,
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text("title Show"),
-                                  DropdownButtonHideUnderline(
-                                    child: DropdownButton(
-                                      icon: Icon(Icons.more_vert),
-                                      value: selectValue,
-                                      items: [
-                                        DropdownMenuItem(
-                                          child: Text('edit'),
-                                          value: "edit",
-                                        ),
-                                        DropdownMenuItem(
-                                          child: Text('delete'),
-                                          value: "delete",
-                                        ),
-                                      ],
-                                      onChanged: (value) {
-                                        selectValue = value!;
-                                      },
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Text("Discriptio Show"),
-                            ],
-                          ),
-                        ),
-                      ),
-                    );
-*/

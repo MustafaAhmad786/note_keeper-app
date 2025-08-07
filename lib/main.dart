@@ -13,11 +13,7 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-   MyApp({super.key});
-final ThemeData lightTheme=ThemeData(
-  brightness: Brightness.dark,
-  primaryColor:Colors.blue,
-);
+  MyApp({super.key});
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -25,7 +21,7 @@ final ThemeData lightTheme=ThemeData(
         primaryColor: Color(0xFF1976D2),
         scaffoldBackgroundColor: Color(0xFFF5F5F5),
         inputDecorationTheme: InputDecorationTheme(
-          border: OutlineInputBorder(),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
         ),
         textTheme: TextTheme(bodyMedium: TextStyle(color: Colors.black54)),
       ),

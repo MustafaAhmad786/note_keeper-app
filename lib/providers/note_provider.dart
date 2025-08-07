@@ -4,8 +4,6 @@ import 'package:marfah_tech/models/note.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class NoteProvider with ChangeNotifier {
-
-
   List<Note> _notes = [];
 
   List<Note> get notes => _notes;
@@ -27,7 +25,8 @@ class NoteProvider with ChangeNotifier {
     saveNotes();
     notifyListeners();
   }
-    Future<void> saveNotes() async {
+
+  Future<void> saveNotes() async {
     final prefs = await SharedPreferences.getInstance();
     final notesDate = _notes.map((note) => note.toMap()).toList();
     final jsonString = jsonEncode(notesDate);

@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:marfah_tech/models/note.dart';
 import 'package:marfah_tech/providers/note_provider.dart';
@@ -13,15 +15,19 @@ class NoteCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        print('tap to LIKE TO');
-      },
-      child: Card(
-        elevation: 4,
-        margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+    return Padding(
+      padding: EdgeInsets.all(16),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.blue.withOpacity(0.1),
+          borderRadius: BorderRadius.circular(15),
+          border: Border.all(
+            width: 0.5,
+            color: const Color.fromARGB(255, 67, 29, 136),
+          ),
+        ),
         child: Padding(
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(8.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -29,10 +35,9 @@ class NoteCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                     
                     note.title,
-                    
-                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   Center(
                     child: DropdownButtonHideUnderline(
