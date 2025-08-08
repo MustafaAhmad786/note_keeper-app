@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:marfah_tech/models/note.dart';
+import 'package:note_keeper/models/note.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 class NoteProvider with ChangeNotifier {

@@ -1,9 +1,8 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:marfah_tech/models/note.dart';
-import 'package:marfah_tech/providers/note_provider.dart';
-import 'package:marfah_tech/screens/add_note_screen.dart';
-import 'package:marfah_tech/widgets/note_cards.dart';
+import 'package:note_keeper/providers/note_provider.dart';
+import 'package:note_keeper/screens/add_note_screen.dart';
+import 'package:note_keeper/widgets/note_cards.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
